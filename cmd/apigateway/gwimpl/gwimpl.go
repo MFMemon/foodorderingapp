@@ -45,14 +45,14 @@ func (g *gateway) Routes() *mux.Router {
 
 	router.HandleFunc("/user/login/", g.userLoginHandler)
 	router.HandleFunc("/user/register/", g.userRegisterHandler)
-	router.HandleFunc("user/review/", g.userReviewHandler)
+	router.HandleFunc("/user/review/", g.userReviewHandler)
 	router.HandleFunc("/user/createorder/", g.userCreateOrderHandler)
 	router.HandleFunc("/user/orderstatus/", g.userOrderStatusHandler)
-	router.HandleFunc("rst/register/", g.rstRegisterHandler)
-	router.HandleFunc("rst/update/", g.rstUpdateHandler)
-	router.HandleFunc("rider/register/", g.riderRegisterHandler)
-	router.HandleFunc("rider/update/", g.riderUpdateHandler)
-	router.HandleFunc("delivery/update/", g.deliveryUpdateHandler)
+	router.HandleFunc("/rst/register/", g.rstRegisterHandler)
+	router.HandleFunc("/rst/update/", g.rstUpdateHandler)
+	router.HandleFunc("/rider/register/", g.riderRegisterHandler)
+	router.HandleFunc("/rider/update/", g.riderUpdateHandler)
+	router.HandleFunc("/delivery/update/", g.deliveryUpdateHandler)
 
 	return router
 }

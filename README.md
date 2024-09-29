@@ -11,5 +11,5 @@ docker compose up --build
 
 ### Test Login Endpoint
 ```bash
-curl http://localhost:6500/user/login/?email=faizan@hello.com&password=klfdmns
+curl http://localhost:6500/user/login/?email=<>&password=<>
 ```
