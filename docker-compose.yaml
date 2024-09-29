@@ -1,0 +1,50 @@
+name: foodordering
+
+services:
+  apigateway:
+    container_name: apigtw_svc
+    depends_on:
+      - consul
+    env_file:
+      - envfile.env
+    environment:
+      - host=0.0.0.0
+      - port=80
+    image: foodordering-apigateway:latest
+    build:
+      dockerfile: docker/apigw/svc/Dockerfile
+    ports:
+      - 6500:80
+
+  consul:
+    container_name: consul_sd
+    image: hashicorp/consul
+    command: agent -server -ui -node=server-1 -bootstrap-expect=1 -client=0.0.0.0
+    ports:
+      - 8500:8500
+      - 8600:8600/udp
+
+  users:
+    container_name: users_svc
+    depends_on:
+      - consul
+      - db
+    env_file:
+      - envfile.env
+    environment:
+      - host=users_svc
+      - port=5051
+      - sqldsn=user=usersdb password=secret host=users_db sslmode=disable
+    image: foodordering-usrsvc:latest
+    build: 
+      dockerfile: docker/users/svc//Dockerfile
+    ports:
+      - 6502:5051
+  
+  db:
+    container_name: users_db
+    image: foodordering-usrdb:latest
+    build:
+      dockerfile: docker/users/db/Dockerfile 
+    expose:
+      - 5432

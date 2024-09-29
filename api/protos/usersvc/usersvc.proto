@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option go_package = "gen/protos/usersvc";
+
+package usersvcimpl;
+
+service User {
+    rpc RegisterUser(UserQueryParams) returns (UserAuthInfo) {}
+    rpc LoginUser(UserQueryParams) returns (UserAuthInfo) {}
+    rpc AuthenticateUser(UserAuthInfo) returns (UserAuthRes) {}
+    //rpc UpdateOrderHistory(OrderEntry) returns (OrderUpdateStatus) {}
+}
+
+message UserQueryParams {
+    string name = 1;
+    string email = 2;
+    string password  = 3;
+}
+
+message UserAuthInfo {
+    int32 id = 1;
+    string token = 2; 
+}
+
+message UserAuthRes {
+    string status = 1;
+}
+
+//message OrderEntry {
+//    
+//}
