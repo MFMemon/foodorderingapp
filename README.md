@@ -6,7 +6,7 @@
 
 Spin up the docker containers for your services, DBs', Consul service discovery and API Gateway
 ```bash
-docker compose up --build
+docker compose up
 ```
 
 ### Test Login Endpoint
